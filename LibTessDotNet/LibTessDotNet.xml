@@ -4,7 +4,7 @@
         <name>LibTessDotNet</name>
     </assembly>
     <members>
-        <member name="M:LibTessDotNet.Double.Geom.EdgeEval(LibTessDotNet.Double.MeshUtils.Vertex,LibTessDotNet.Double.MeshUtils.Vertex,LibTessDotNet.Double.MeshUtils.Vertex)">
+        <member name="M:LibTessDotNet.Geom.EdgeEval(LibTessDotNet.MeshUtils.Vertex,LibTessDotNet.MeshUtils.Vertex,LibTessDotNet.MeshUtils.Vertex)">
             <summary>
             Given three vertices u,v,w such that VertLeq(u,v) and VertLeq(v,w),
             evaluates the t-coord of the edge uw at the s-coord of the vertex v.
@@ -17,27 +17,27 @@
             r is guaranteed to satisfy MIN(u->t,w->t) less than or equal r less than or equal MAX(u->t,w->t).
             </summary>
         </member>
-        <member name="M:LibTessDotNet.Double.Geom.EdgeSign(LibTessDotNet.Double.MeshUtils.Vertex,LibTessDotNet.Double.MeshUtils.Vertex,LibTessDotNet.Double.MeshUtils.Vertex)">
+        <member name="M:LibTessDotNet.Geom.EdgeSign(LibTessDotNet.MeshUtils.Vertex,LibTessDotNet.MeshUtils.Vertex,LibTessDotNet.MeshUtils.Vertex)">
             <summary>
             Returns a number whose sign matches EdgeEval(u,v,w) but which
             is cheaper to evaluate. Returns > 0, == 0 , or less than 0
             as v is above, on, or below the edge uw.
             </summary>
         </member>
-        <member name="M:LibTessDotNet.Double.Geom.EdgeIntersect(LibTessDotNet.Double.MeshUtils.Vertex,LibTessDotNet.Double.MeshUtils.Vertex,LibTessDotNet.Double.MeshUtils.Vertex,LibTessDotNet.Double.MeshUtils.Vertex,LibTessDotNet.Double.MeshUtils.Vertex)">
+        <member name="M:LibTessDotNet.Geom.EdgeIntersect(LibTessDotNet.MeshUtils.Vertex,LibTessDotNet.MeshUtils.Vertex,LibTessDotNet.MeshUtils.Vertex,LibTessDotNet.MeshUtils.Vertex,LibTessDotNet.MeshUtils.Vertex)">
             <summary>
             Given edges (o1,d1) and (o2,d2), compute their point of intersection.
             The computed point is guaranteed to lie in the intersection of the
             bounding rectangles defined by each edge.
             </summary>
         </member>
-        <member name="M:LibTessDotNet.Double.Mesh.MakeEdge(LibTessDotNet.Double.IPool)">
+        <member name="M:LibTessDotNet.Mesh.MakeEdge(LibTessDotNet.IPool)">
             <summary>
             Creates one edge, two vertices and a loop (face).
             The loop consists of the two new half-edges.
             </summary>
         </member>
-        <member name="M:LibTessDotNet.Double.Mesh.Splice(LibTessDotNet.Double.IPool,LibTessDotNet.Double.MeshUtils.Edge,LibTessDotNet.Double.MeshUtils.Edge)">
+        <member name="M:LibTessDotNet.Mesh.Splice(LibTessDotNet.IPool,LibTessDotNet.MeshUtils.Edge,LibTessDotNet.MeshUtils.Edge)">
             <summary>
             Splice is the basic operation for changing the
             mesh connectivity and topology.  It changes the mesh so that
@@ -63,7 +63,7 @@
             If eDst == eOrg->Oprev, the old vertex will have a single edge.
             </summary>
         </member>
-        <member name="M:LibTessDotNet.Double.Mesh.Delete(LibTessDotNet.Double.IPool,LibTessDotNet.Double.MeshUtils.Edge)">
+        <member name="M:LibTessDotNet.Mesh.Delete(LibTessDotNet.IPool,LibTessDotNet.MeshUtils.Edge)">
             <summary>
             Removes the edge eDel. There are several cases:
             if (eDel->Lface != eDel->Rface), we join two loops into one; the loop
@@ -72,20 +72,20 @@
             would create isolated vertices, those are deleted as well.
             </summary>
         </member>
-        <member name="M:LibTessDotNet.Double.Mesh.AddEdgeVertex(LibTessDotNet.Double.IPool,LibTessDotNet.Double.MeshUtils.Edge)">
+        <member name="M:LibTessDotNet.Mesh.AddEdgeVertex(LibTessDotNet.IPool,LibTessDotNet.MeshUtils.Edge)">
             <summary>
             Creates a new edge such that eNew == eOrg.Lnext and eNew.Dst is a newly created vertex.
             eOrg and eNew will have the same left face.
             </summary>
         </member>
-        <member name="M:LibTessDotNet.Double.Mesh.SplitEdge(LibTessDotNet.Double.IPool,LibTessDotNet.Double.MeshUtils.Edge)">
+        <member name="M:LibTessDotNet.Mesh.SplitEdge(LibTessDotNet.IPool,LibTessDotNet.MeshUtils.Edge)">
             <summary>
             Splits eOrg into two edges eOrg and eNew such that eNew == eOrg.Lnext.
             The new vertex is eOrg.Dst == eNew.Org.
             eOrg and eNew will have the same left face.
             </summary>
         </member>
-        <member name="M:LibTessDotNet.Double.Mesh.Connect(LibTessDotNet.Double.IPool,LibTessDotNet.Double.MeshUtils.Edge,LibTessDotNet.Double.MeshUtils.Edge)">
+        <member name="M:LibTessDotNet.Mesh.Connect(LibTessDotNet.IPool,LibTessDotNet.MeshUtils.Edge,LibTessDotNet.MeshUtils.Edge)">
             <summary>
             Creates a new edge from eOrg->Dst to eDst->Org, and returns the corresponding half-edge eNew.
             If eOrg->Lface == eDst->Lface, this splits one loop into two,
@@ -97,7 +97,7 @@
             If (eOrg->Lnext->Lnext == eDst), the old face is reduced to two edges.
             </summary>
         </member>
-        <member name="M:LibTessDotNet.Double.Mesh.ZapFace(LibTessDotNet.Double.IPool,LibTessDotNet.Double.MeshUtils.Face)">
+        <member name="M:LibTessDotNet.Mesh.ZapFace(LibTessDotNet.IPool,LibTessDotNet.MeshUtils.Face)">
             <summary>
             Destroys a face and removes it from the global face list. All edges of
             fZap will have a NULL pointer as their left face. Any edges which
@@ -107,7 +107,7 @@
             in any order. Zapped faces cannot be used in further mesh operations!
             </summary>
         </member>
-        <member name="M:LibTessDotNet.Double.MeshUtils.Splice(LibTessDotNet.Double.MeshUtils.Edge,LibTessDotNet.Double.MeshUtils.Edge)">
+        <member name="M:LibTessDotNet.MeshUtils.Splice(LibTessDotNet.MeshUtils.Edge,LibTessDotNet.MeshUtils.Edge)">
             <summary>
             Splice( a, b ) is best described by the Guibas/Stolfi paper or the
             CS348a notes (see Mesh.cs). Basically it modifies the mesh so that
@@ -116,7 +116,7 @@
             For more explanation see Mesh.Splice().
             </summary>
         </member>
-        <member name="M:LibTessDotNet.Double.MeshUtils.MakeVertex(LibTessDotNet.Double.IPool,LibTessDotNet.Double.MeshUtils.Edge,LibTessDotNet.Double.MeshUtils.Vertex)">
+        <member name="M:LibTessDotNet.MeshUtils.MakeVertex(LibTessDotNet.IPool,LibTessDotNet.MeshUtils.Edge,LibTessDotNet.MeshUtils.Vertex)">
             <summary>
             MakeVertex( eOrig, vNext ) attaches a new vertex and makes it the
             origin of all edges in the vertex loop to which eOrig belongs. "vNext" gives
@@ -125,7 +125,7 @@
             list will not see the newly created vertices.
             </summary>
         </member>
-        <member name="M:LibTessDotNet.Double.MeshUtils.MakeFace(LibTessDotNet.Double.IPool,LibTessDotNet.Double.MeshUtils.Edge,LibTessDotNet.Double.MeshUtils.Face)">
+        <member name="M:LibTessDotNet.MeshUtils.MakeFace(LibTessDotNet.IPool,LibTessDotNet.MeshUtils.Edge,LibTessDotNet.MeshUtils.Face)">
             <summary>
             MakeFace( eOrig, fNext ) attaches a new face and makes it the left
             face of all edges in the face loop to which eOrig belongs. "fNext" gives
@@ -134,37 +134,37 @@
             list will not see the newly created faces.
             </summary>
         </member>
-        <member name="M:LibTessDotNet.Double.MeshUtils.MakeEdge(LibTessDotNet.Double.IPool,LibTessDotNet.Double.MeshUtils.Edge)">
+        <member name="M:LibTessDotNet.MeshUtils.MakeEdge(LibTessDotNet.IPool,LibTessDotNet.MeshUtils.Edge)">
             <summary>
             MakeEdge creates a new pair of half-edges which form their own loop.
             No vertex or face structures are allocated, but these must be assigned
             before the current edge operation is completed.
             </summary>
         </member>
-        <member name="M:LibTessDotNet.Double.MeshUtils.KillEdge(LibTessDotNet.Double.IPool,LibTessDotNet.Double.MeshUtils.Edge)">
+        <member name="M:LibTessDotNet.MeshUtils.KillEdge(LibTessDotNet.IPool,LibTessDotNet.MeshUtils.Edge)">
             <summary>
             KillEdge( eDel ) destroys an edge (the half-edges eDel and eDel->Sym),
             and removes from the global edge list.
             </summary>
         </member>
-        <member name="M:LibTessDotNet.Double.MeshUtils.KillVertex(LibTessDotNet.Double.IPool,LibTessDotNet.Double.MeshUtils.Vertex,LibTessDotNet.Double.MeshUtils.Vertex)">
+        <member name="M:LibTessDotNet.MeshUtils.KillVertex(LibTessDotNet.IPool,LibTessDotNet.MeshUtils.Vertex,LibTessDotNet.MeshUtils.Vertex)">
             <summary>
             KillVertex( vDel ) destroys a vertex and removes it from the global
             vertex list. It updates the vertex loop to point to a given new vertex.
             </summary>
         </member>
-        <member name="M:LibTessDotNet.Double.MeshUtils.KillFace(LibTessDotNet.Double.IPool,LibTessDotNet.Double.MeshUtils.Face,LibTessDotNet.Double.MeshUtils.Face)">
+        <member name="M:LibTessDotNet.MeshUtils.KillFace(LibTessDotNet.IPool,LibTessDotNet.MeshUtils.Face,LibTessDotNet.MeshUtils.Face)">
             <summary>
             KillFace( fDel ) destroys a face and removes it from the global face
             list. It updates the face loop to point to a given new face.
             </summary>
         </member>
-        <member name="M:LibTessDotNet.Double.MeshUtils.FaceArea(LibTessDotNet.Double.MeshUtils.Face)">
+        <member name="M:LibTessDotNet.MeshUtils.FaceArea(LibTessDotNet.MeshUtils.Face)">
             <summary>
             Return signed area of face.
             </summary>
         </member>
-        <member name="T:LibTessDotNet.Double.Tess">
+        <member name="T:LibTessDotNet.Tess">
             <summary>
             Tessellator, the main class to use
             </summary>
@@ -187,7 +187,7 @@
             Console.WriteLine("Triangle: ({0}) ({1}) ({2})", v0, v1, v2);
             </example>
         </member>
-        <member name="M:LibTessDotNet.Double.Tess.EdgeLeq(LibTessDotNet.Double.Tess.ActiveRegion,LibTessDotNet.Double.Tess.ActiveRegion)">
+        <member name="M:LibTessDotNet.Tess.EdgeLeq(LibTessDotNet.Tess.ActiveRegion,LibTessDotNet.Tess.ActiveRegion)">
             <summary>
             Both edges must be directed from right to left (this is the canonical
             direction for the upper edge of each region).
@@ -200,12 +200,12 @@
             we sort the edges by slope (they would otherwise compare equally).
             </summary>
         </member>
-        <member name="M:LibTessDotNet.Double.Tess.FixUpperEdge(LibTessDotNet.Double.Tess.ActiveRegion,LibTessDotNet.Double.MeshUtils.Edge)">
+        <member name="M:LibTessDotNet.Tess.FixUpperEdge(LibTessDotNet.Tess.ActiveRegion,LibTessDotNet.MeshUtils.Edge)">
             <summary>
             Replace an upper edge which needs fixing (see ConnectRightVertex).
             </summary>
         </member>
-        <member name="M:LibTessDotNet.Double.Tess.AddRegionBelow(LibTessDotNet.Double.Tess.ActiveRegion,LibTessDotNet.Double.MeshUtils.Edge)">
+        <member name="M:LibTessDotNet.Tess.AddRegionBelow(LibTessDotNet.Tess.ActiveRegion,LibTessDotNet.MeshUtils.Edge)">
             <summary>
             Add a new active region to the sweep line, *somewhere* below "regAbove"
             (according to where the new edge belongs in the sweep-line dictionary).
@@ -213,7 +213,7 @@
             Winding number and "inside" flag are not updated.
             </summary>
         </member>
-        <member name="M:LibTessDotNet.Double.Tess.FinishRegion(LibTessDotNet.Double.Tess.ActiveRegion)">
+        <member name="M:LibTessDotNet.Tess.FinishRegion(LibTessDotNet.Tess.ActiveRegion)">
             <summary>
             Delete a region from the sweep line. This happens when the upper
             and lower chains of a region meet (at a vertex on the sweep line).
@@ -222,7 +222,7 @@
             changing, this face may not have even existed until now).
             </summary>
         </member>
-        <member name="M:LibTessDotNet.Double.Tess.FinishLeftRegions(LibTessDotNet.Double.Tess.ActiveRegion,LibTessDotNet.Double.Tess.ActiveRegion)">
+        <member name="M:LibTessDotNet.Tess.FinishLeftRegions(LibTessDotNet.Tess.ActiveRegion,LibTessDotNet.Tess.ActiveRegion)">
             <summary>
             We are given a vertex with one or more left-going edges.  All affected
             edges should be in the edge dictionary.  Starting at regFirst->eUp,
@@ -236,7 +236,7 @@
             same as in the dictionary.
             </summary>
         </member>
-        <member name="M:LibTessDotNet.Double.Tess.AddRightEdges(LibTessDotNet.Double.Tess.ActiveRegion,LibTessDotNet.Double.MeshUtils.Edge,LibTessDotNet.Double.MeshUtils.Edge,LibTessDotNet.Double.MeshUtils.Edge,System.Boolean)">
+        <member name="M:LibTessDotNet.Tess.AddRightEdges(LibTessDotNet.Tess.ActiveRegion,LibTessDotNet.MeshUtils.Edge,LibTessDotNet.MeshUtils.Edge,LibTessDotNet.MeshUtils.Edge,System.Boolean)">
             <summary>
             Purpose: insert right-going edges into the edge dictionary, and update
             winding numbers and mesh connectivity appropriately.  All right-going
@@ -248,13 +248,13 @@
             should be null.
             </summary>
         </member>
-        <member name="M:LibTessDotNet.Double.Tess.SpliceMergeVertices(LibTessDotNet.Double.MeshUtils.Edge,LibTessDotNet.Double.MeshUtils.Edge)">
+        <member name="M:LibTessDotNet.Tess.SpliceMergeVertices(LibTessDotNet.MeshUtils.Edge,LibTessDotNet.MeshUtils.Edge)">
             <summary>
             Two vertices with identical coordinates are combined into one.
             e1.Org is kept, while e2.Org is discarded.
             </summary>
         </member>
-        <member name="M:LibTessDotNet.Double.Tess.VertexWeights(LibTessDotNet.Double.MeshUtils.Vertex,LibTessDotNet.Double.MeshUtils.Vertex,LibTessDotNet.Double.MeshUtils.Vertex,System.Double@,System.Double@)">
+        <member name="M:LibTessDotNet.Tess.VertexWeights(LibTessDotNet.MeshUtils.Vertex,LibTessDotNet.MeshUtils.Vertex,LibTessDotNet.MeshUtils.Vertex,System.Single@,System.Single@)">
             <summary>
             Find some weights which describe how the intersection vertex is
             a linear combination of "org" and "dest".  Each of the two edges
@@ -263,14 +263,14 @@
             relative distance to "isect".
             </summary>
         </member>
-        <member name="M:LibTessDotNet.Double.Tess.GetIntersectData(LibTessDotNet.Double.MeshUtils.Vertex,LibTessDotNet.Double.MeshUtils.Vertex,LibTessDotNet.Double.MeshUtils.Vertex,LibTessDotNet.Double.MeshUtils.Vertex,LibTessDotNet.Double.MeshUtils.Vertex)">
+        <member name="M:LibTessDotNet.Tess.GetIntersectData(LibTessDotNet.MeshUtils.Vertex,LibTessDotNet.MeshUtils.Vertex,LibTessDotNet.MeshUtils.Vertex,LibTessDotNet.MeshUtils.Vertex,LibTessDotNet.MeshUtils.Vertex)">
             <summary>
             We've computed a new intersection point, now we need a "data" pointer
             from the user so that we can refer to this new vertex in the
             rendering callbacks.
             </summary>
         </member>
-        <member name="M:LibTessDotNet.Double.Tess.CheckForRightSplice(LibTessDotNet.Double.Tess.ActiveRegion)">
+        <member name="M:LibTessDotNet.Tess.CheckForRightSplice(LibTessDotNet.Tess.ActiveRegion)">
             <summary>
             Check the upper and lower edge of "regUp", to make sure that the
             eUp->Org is above eLo, or eLo->Org is below eUp (depending on which
@@ -297,7 +297,7 @@
             Basically this is a combinatorial solution to a numerical problem.
             </summary>
         </member>
-        <member name="M:LibTessDotNet.Double.Tess.CheckForLeftSplice(LibTessDotNet.Double.Tess.ActiveRegion)">
+        <member name="M:LibTessDotNet.Tess.CheckForLeftSplice(LibTessDotNet.Tess.ActiveRegion)">
             <summary>
             Check the upper and lower edge of "regUp", to make sure that the
             eUp->Dst is above eLo, or eLo->Dst is below eUp (depending on which
@@ -317,7 +317,7 @@
             other edge.
             </summary>
         </member>
-        <member name="M:LibTessDotNet.Double.Tess.CheckForIntersect(LibTessDotNet.Double.Tess.ActiveRegion)">
+        <member name="M:LibTessDotNet.Tess.CheckForIntersect(LibTessDotNet.Tess.ActiveRegion)">
             <summary>
             Check the upper and lower edges of the given region to see if
             they intersect.  If so, create the intersection and add it
@@ -328,7 +328,7 @@
             checked for intersections, and possibly regUp has been deleted.
             </summary>
         </member>
-        <member name="M:LibTessDotNet.Double.Tess.WalkDirtyRegions(LibTessDotNet.Double.Tess.ActiveRegion)">
+        <member name="M:LibTessDotNet.Tess.WalkDirtyRegions(LibTessDotNet.Tess.ActiveRegion)">
             <summary>
             When the upper or lower edge of any region changes, the region is
             marked "dirty".  This routine walks through all the dirty regions
@@ -338,7 +338,7 @@
             the invariants.
             </summary>
         </member>
-        <member name="M:LibTessDotNet.Double.Tess.ConnectRightVertex(LibTessDotNet.Double.Tess.ActiveRegion,LibTessDotNet.Double.MeshUtils.Edge)">
+        <member name="M:LibTessDotNet.Tess.ConnectRightVertex(LibTessDotNet.Tess.ActiveRegion,LibTessDotNet.MeshUtils.Edge)">
             <summary>
             Purpose: connect a "right" vertex vEvent (one where all edges go left)
             to the unprocessed portion of the mesh.  Since there are no right-going
@@ -371,14 +371,14 @@
             closest one, in which case we won't need to make any changes.
             </summary>
         </member>
-        <member name="M:LibTessDotNet.Double.Tess.ConnectLeftDegenerate(LibTessDotNet.Double.Tess.ActiveRegion,LibTessDotNet.Double.MeshUtils.Vertex)">
+        <member name="M:LibTessDotNet.Tess.ConnectLeftDegenerate(LibTessDotNet.Tess.ActiveRegion,LibTessDotNet.MeshUtils.Vertex)">
             <summary>
             The event vertex lies exactly on an already-processed edge or vertex.
             Adding the new vertex involves splicing it into the already-processed
             part of the mesh.
             </summary>
         </member>
-        <member name="M:LibTessDotNet.Double.Tess.ConnectLeftVertex(LibTessDotNet.Double.MeshUtils.Vertex)">
+        <member name="M:LibTessDotNet.Tess.ConnectLeftVertex(LibTessDotNet.MeshUtils.Vertex)">
             <summary>
             Purpose: connect a "left" vertex (one where both edges go right)
             to the processed portion of the mesh.  Let R be the active region
@@ -395,13 +395,13 @@
                 - merging with an already-processed portion of U or L
             </summary>
         </member>
-        <member name="M:LibTessDotNet.Double.Tess.SweepEvent(LibTessDotNet.Double.MeshUtils.Vertex)">
+        <member name="M:LibTessDotNet.Tess.SweepEvent(LibTessDotNet.MeshUtils.Vertex)">
             <summary>
             Does everything necessary when the sweep line crosses a vertex.
             Updates the mesh and the edge dictionary.
             </summary>
         </member>
-        <member name="M:LibTessDotNet.Double.Tess.AddSentinel(System.Double,System.Double,System.Double)">
+        <member name="M:LibTessDotNet.Tess.AddSentinel(System.Single,System.Single,System.Single)">
             <summary>
             Make the sentinel coordinates big enough that they will never be
             merged with real input features.
@@ -410,24 +410,24 @@
             to avoid special cases at the top and bottom.
             </summary>
         </member>
-        <member name="M:LibTessDotNet.Double.Tess.InitEdgeDict">
+        <member name="M:LibTessDotNet.Tess.InitEdgeDict">
             <summary>
             We maintain an ordering of edge intersections with the sweep line.
             This order is maintained in a dynamic dictionary.
             </summary>
         </member>
-        <member name="M:LibTessDotNet.Double.Tess.RemoveDegenerateEdges">
+        <member name="M:LibTessDotNet.Tess.RemoveDegenerateEdges">
             <summary>
             Remove zero-length edges, and contours with fewer than 3 vertices.
             </summary>
         </member>
-        <member name="M:LibTessDotNet.Double.Tess.InitPriorityQ">
+        <member name="M:LibTessDotNet.Tess.InitPriorityQ">
             <summary>
             Insert all vertices into the priority queue which determines the
             order in which vertices cross the sweep line.
             </summary>
         </member>
-        <member name="M:LibTessDotNet.Double.Tess.RemoveDegenerateFaces">
+        <member name="M:LibTessDotNet.Tess.RemoveDegenerateFaces">
             <summary>
             Delete any degenerate faces with only two edges.  WalkDirtyRegions()
             will catch almost all of these, but it won't catch degenerate faces
@@ -443,7 +443,7 @@
             will sometimes be keeping a pointer to that edge.
             </summary>
         </member>
-        <member name="M:LibTessDotNet.Double.Tess.ComputeInterior">
+        <member name="M:LibTessDotNet.Tess.ComputeInterior">
             <summary>
             ComputeInterior computes the planar arrangement specified
             by the given contours, and further subdivides this arrangement
@@ -452,43 +452,43 @@
             Each interior region is guaranteed to be monotone.
             </summary>
         </member>
-        <member name="F:LibTessDotNet.Double.Tess.Undef">
+        <member name="F:LibTessDotNet.Tess.Undef">
             <summary>
             The value used to fill indices of incomplete polygons 
-            and to mark boundary edges in <see cref="F:LibTessDotNet.Double.ElementType.ConnectedPolygons"/> mode.
+            and to mark boundary edges in <see cref="F:LibTessDotNet.ElementType.ConnectedPolygons"/> mode.
             </summary>
         </member>
-        <member name="F:LibTessDotNet.Double.Tess.NoEmptyPolygons">
+        <member name="F:LibTessDotNet.Tess.NoEmptyPolygons">
             <summary>
             If true, will remove empty (zero area) polygons.
             </summary>
         </member>
-        <member name="P:LibTessDotNet.Double.Tess.Normal">
+        <member name="P:LibTessDotNet.Tess.Normal">
             <summary>
             Normal of the tessellated mesh. The normal is the main axis of sweep that has been used.
             </summary>
         </member>
-        <member name="P:LibTessDotNet.Double.Tess.Vertices">
+        <member name="P:LibTessDotNet.Tess.Vertices">
             <summary>
             Vertices of the tessellated mesh.
             </summary>
         </member>
-        <member name="P:LibTessDotNet.Double.Tess.VertexCount">
+        <member name="P:LibTessDotNet.Tess.VertexCount">
             <summary>
             Number of vertices in the tessellated mesh.
             </summary>
         </member>
-        <member name="P:LibTessDotNet.Double.Tess.Elements">
+        <member name="P:LibTessDotNet.Tess.Elements">
             <summary>
-            Indices of the tessellated mesh. See <see cref="T:LibTessDotNet.Double.ElementType"/> for details on data layout.
+            Indices of the tessellated mesh. See <see cref="T:LibTessDotNet.ElementType"/> for details on data layout.
             </summary>
         </member>
-        <member name="P:LibTessDotNet.Double.Tess.ElementCount">
+        <member name="P:LibTessDotNet.Tess.ElementCount">
             <summary>
             Number of elements in the tessellated mesh.
             </summary>
         </member>
-        <member name="M:LibTessDotNet.Double.Tess.TessellateMonoRegion(LibTessDotNet.Double.MeshUtils.Face)">
+        <member name="M:LibTessDotNet.Tess.TessellateMonoRegion(LibTessDotNet.MeshUtils.Face)">
             <summary>
             TessellateMonoRegion( face ) tessellates a monotone region
             (what else would it do??)  The region must consist of a single
@@ -518,14 +518,14 @@
             as possible, we restore the invariant (check it yourself).
             </summary>
         </member>
-        <member name="M:LibTessDotNet.Double.Tess.TessellateInterior">
+        <member name="M:LibTessDotNet.Tess.TessellateInterior">
             <summary>
             TessellateInterior( mesh ) tessellates each region of
             the mesh which is marked "inside" the polygon. Each such region
             must be monotone.
             </summary>
         </member>
-        <member name="M:LibTessDotNet.Double.Tess.DiscardExterior">
+        <member name="M:LibTessDotNet.Tess.DiscardExterior">
             <summary>
             DiscardExterior zaps (ie. sets to null) all faces
             which are not marked "inside" the polygon.  Since further mesh operations
@@ -533,7 +533,7 @@
             mesh so that exterior loops are not represented in the data structure.
             </summary>
         </member>
-        <member name="M:LibTessDotNet.Double.Tess.SetWindingNumber(System.Int32,System.Boolean)">
+        <member name="M:LibTessDotNet.Tess.SetWindingNumber(System.Int32,System.Boolean)">
             <summary>
             SetWindingNumber( value, keepOnlyBoundary ) resets the
             winding numbers on all edges so that regions marked "inside" the
@@ -544,69 +544,69 @@
             separate an interior region from an exterior one.
             </summary>
         </member>
-        <member name="M:LibTessDotNet.Double.Tess.AddContour(LibTessDotNet.Double.ContourVertex[],LibTessDotNet.Double.ContourOrientation)">
+        <member name="M:LibTessDotNet.Tess.AddContour(LibTessDotNet.ContourVertex[],LibTessDotNet.ContourOrientation)">
             <summary>
             Adds a closed contour to be tessellated.
             </summary>
             <param name="vertices"> Vertices of the contour. </param>
             <param name="forceOrientation">
             Orientation of the contour.
-            <see cref="F:LibTessDotNet.Double.ContourOrientation.Original"/> keeps the orientation of the input vertices.
-            <see cref="F:LibTessDotNet.Double.ContourOrientation.Clockwise"/> and <see cref="F:LibTessDotNet.Double.ContourOrientation.CounterClockwise"/> 
+            <see cref="F:LibTessDotNet.ContourOrientation.Original"/> keeps the orientation of the input vertices.
+            <see cref="F:LibTessDotNet.ContourOrientation.Clockwise"/> and <see cref="F:LibTessDotNet.ContourOrientation.CounterClockwise"/> 
             force the vertices to have a specified orientation.
             </param>
         </member>
-        <member name="M:LibTessDotNet.Double.Tess.AddContour(System.Collections.Generic.IList{LibTessDotNet.Double.ContourVertex},LibTessDotNet.Double.ContourOrientation)">
+        <member name="M:LibTessDotNet.Tess.AddContour(System.Collections.Generic.IList{LibTessDotNet.ContourVertex},LibTessDotNet.ContourOrientation)">
             <summary>
             Adds a closed contour to be tessellated.
             </summary>
             <param name="vertices"> Vertices of the contour. </param>
             <param name="forceOrientation">
             Orientation of the contour.
-            <see cref="F:LibTessDotNet.Double.ContourOrientation.Original"/> keeps the orientation of the input vertices.
-            <see cref="F:LibTessDotNet.Double.ContourOrientation.Clockwise"/> and <see cref="F:LibTessDotNet.Double.ContourOrientation.CounterClockwise"/> 
+            <see cref="F:LibTessDotNet.ContourOrientation.Original"/> keeps the orientation of the input vertices.
+            <see cref="F:LibTessDotNet.ContourOrientation.Clockwise"/> and <see cref="F:LibTessDotNet.ContourOrientation.CounterClockwise"/> 
             force the vertices to have a specified orientation.
             </param>
         </member>
-        <member name="M:LibTessDotNet.Double.Tess.Tessellate(LibTessDotNet.Double.WindingRule,LibTessDotNet.Double.ElementType,System.Int32,LibTessDotNet.Double.CombineCallback,LibTessDotNet.Double.Vec3)">
+        <member name="M:LibTessDotNet.Tess.Tessellate(LibTessDotNet.WindingRule,LibTessDotNet.ElementType,System.Int32,LibTessDotNet.CombineCallback,LibTessDotNet.Vec3)">
             <summary>
             Tessellates the input contours.
             </summary>
-            <param name="windingRule"> Winding rule used for tessellation. See <see cref="T:LibTessDotNet.Double.WindingRule"/> for details. </param>
-            <param name="elementType"> Tessellation output type. See <see cref="T:LibTessDotNet.Double.ElementType"/> for details. </param>
+            <param name="windingRule"> Winding rule used for tessellation. See <see cref="T:LibTessDotNet.WindingRule"/> for details. </param>
+            <param name="elementType"> Tessellation output type. See <see cref="T:LibTessDotNet.ElementType"/> for details. </param>
             <param name="polySize"> Number of vertices per polygon if output is polygons. </param>
             <param name="combineCallback"> Interpolator used to determine the data payload of generated vertices. </param>
             <param name="normal"> Normal of the input contours. If set to zero, the normal will be calculated during tessellation. </param>
         </member>
-        <member name="T:LibTessDotNet.Double.WindingRule">
+        <member name="T:LibTessDotNet.WindingRule">
             <summary>
             The winding rule determines how the different contours are combined together.
             See OpenGL Programming Guide (section "Winding Numbers and Winding Rules") for description of the winding rules.
             http://www.glprogramming.com/red/chapter11.html
             </summary>
         </member>
-        <member name="T:LibTessDotNet.Double.ElementType">
+        <member name="T:LibTessDotNet.ElementType">
             <summary>
-            The element type determines the contents of <see cref="P:LibTessDotNet.Double.Tess.Elements"/>.
+            The element type determines the contents of <see cref="P:LibTessDotNet.Tess.Elements"/>.
             </summary>
         </member>
-        <member name="F:LibTessDotNet.Double.ElementType.Polygons">
+        <member name="F:LibTessDotNet.ElementType.Polygons">
             <summary>
-            Each element in <see cref="P:LibTessDotNet.Double.Tess.Elements"/> is a polygon defined as 'polySize' number of vertex indices.
-            If a polygon has less than 'polySize' vertices, the remaining indices are stored as <see cref="F:LibTessDotNet.Double.Tess.Undef"/>.
+            Each element in <see cref="P:LibTessDotNet.Tess.Elements"/> is a polygon defined as 'polySize' number of vertex indices.
+            If a polygon has less than 'polySize' vertices, the remaining indices are stored as <see cref="F:LibTessDotNet.Tess.Undef"/>.
             </summary>
         </member>
-        <member name="F:LibTessDotNet.Double.ElementType.ConnectedPolygons">
+        <member name="F:LibTessDotNet.ElementType.ConnectedPolygons">
             <summary>
-            Each element in <see cref="P:LibTessDotNet.Double.Tess.Elements"/> is polygon defined as 'polySize' number of vertex indices,
+            Each element in <see cref="P:LibTessDotNet.Tess.Elements"/> is polygon defined as 'polySize' number of vertex indices,
             followed by 'polySize' indices to neighbour polygons, that is each element is 'polySize' * 2 indices.
-            If a polygon has less than 'polySize' vertices, the remaining indices are stored as <see cref="F:LibTessDotNet.Double.Tess.Undef"/>.
-            If a polygon edge is a boundary, that is, not connected to another polygon, the neighbour index is <see cref="F:LibTessDotNet.Double.Tess.Undef"/>.
+            If a polygon has less than 'polySize' vertices, the remaining indices are stored as <see cref="F:LibTessDotNet.Tess.Undef"/>.
+            If a polygon edge is a boundary, that is, not connected to another polygon, the neighbour index is <see cref="F:LibTessDotNet.Tess.Undef"/>.
             </summary>
         </member>
-        <member name="F:LibTessDotNet.Double.ElementType.BoundaryContours">
+        <member name="F:LibTessDotNet.ElementType.BoundaryContours">
             <summary>
-            Each element in <see cref="P:LibTessDotNet.Double.Tess.Elements"/> is [base index, count] pair defining a range of vertices for a contour.
+            Each element in <see cref="P:LibTessDotNet.Tess.Elements"/> is [base index, count] pair defining a range of vertices for a contour.
             The first value is index to first vertex in contour and the second value is number of vertices in the contour.
             </summary>
         </member>
