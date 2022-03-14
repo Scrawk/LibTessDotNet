@@ -35,14 +35,18 @@ using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq.Expressions;
+
 #if DOUBLE
 using Real = System.Double;
 namespace LibTessDotNet.Double
 #else
+
 using Real = System.Single;
+
 namespace LibTessDotNet
 #endif
 {
+
     public struct Vec3
     {
         public readonly static Vec3 Zero = new Vec3();
