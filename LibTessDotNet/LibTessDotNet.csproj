@@ -6,6 +6,14 @@
     <DocumentationFile>F:\Projects\Visual Studio Projects\LibTessDotNet\LibTessDotNet\LibTessDotNet.xml</DocumentationFile>
   </PropertyGroup>
 
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <DefineConstants>$(DefineConstants)TRACE; DOUBLE</DefineConstants>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
+    <DefineConstants>$(DefineConstants)TRACE; DOUBLE</DefineConstants>
+  </PropertyGroup>
+
   <Target Name="PostBuild" AfterTargets="PostBuildEvent">
     <Exec Command="xcopy &quot;$(ProjectDir)bin\$(ConfigurationName)\netcoreapp3.1\LibTessDotNet.dll&quot; &quot;F:\Projects\Unity Projects\CGALDotNetUnity\Assets\CGALDotNet\Plugins&quot; /y&#xD;&#xA;xcopy &quot;$(ProjectDir)bin\$(ConfigurationName)\netcoreapp3.1\LibTessDotNet.pdb&quot; &quot;F:\Projects\Unity Projects\CGALDotNetUnity\Assets\CGALDotNet\Plugins&quot; /y&#xD;&#xA;xcopy &quot;$(ProjectDir)LibTessDotNet.xml&quot; &quot;F:\Projects\Unity Projects\CGALDotNetUnity\Assets\CGALDotNetGeometry\Plugins&quot; /y" />
   </Target>
